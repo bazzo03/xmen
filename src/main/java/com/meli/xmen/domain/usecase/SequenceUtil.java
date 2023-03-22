@@ -5,6 +5,8 @@ import com.meli.xmen.domain.entity.Cell;
 
 public class SequenceUtil {
 
+    private SequenceUtil() {}
+
     public static Integer findMutantSequenceArray(Cell[] array) {
 
         int totalSequences = 0;

@@ -11,5 +11,5 @@ import lombok.ToString;
 @Builder(setterPrefix = "with")
 public class Dna {
 
-    private List<String> dna;
+    private List<String> dnaList;
 }

@@ -13,17 +13,19 @@ import org.apache.commons.lang3.ArrayUtils;
 public class DnaService {
 
     private static final Pattern DNA_PATTERN = Pattern.compile("[atcg]+", Pattern.CASE_INSENSITIVE);
+    private static final String MATRIX_SIZE_NOT_CONSISTENT =
+            "The size of the matrix to be built is not consistent";
 
     public Either<ErrorResponse, Character[][]> loadDnaData(Dna dna) {
         log.info("Will transform DNA into a matrix of Characters");
-        var dnaResult = new Character[dna.getDna().size()][dna.getDna().size()];
+        var dnaResult = new Character[dna.getDnaList().size()][dna.getDnaList().size()];
 
         var counter = new AtomicInteger(0);
         var validations =
-                dna.getDna().stream()
+                dna.getDnaList().stream()
                         .map(
                                 row ->
-                                        validateRow(dna.getDna().size(), row)
+                                        validateRow(dna.getDnaList().size(), row)
                                                 .fold(
                                                         left -> {
                                                             counter.getAndIncrement();
@@ -55,9 +57,8 @@ public class DnaService {
 
     private Either<ErrorResponse, Boolean> validateRow(Integer vectorLength, String row) {
         if (row.length() != vectorLength) {
-            log.warn("The size of the matrix to be built is not consistent");
-            return Either.left(
-                    new ErrorResponse(400, "The size of the matrix to be built is not consistent"));
+            log.warn(MATRIX_SIZE_NOT_CONSISTENT);
+            return Either.left(new ErrorResponse(400, MATRIX_SIZE_NOT_CONSISTENT));
         } else if (!DNA_PATTERN.matcher(row).matches()) {
             log.warn(
                     "Invalid Character found: {}. The only valid Characters are: A, T, C, G.", row);

@@ -49,14 +49,11 @@ public class MutantDNAHandler {
     }
 
     private <T> Either<T, Boolean> findAllDirectionSequences(Cell[][] matrix) {
-        var v = verticalSequenceService.findSequences(matrix);
-        var h = horizontalSequenceService.findSequences(matrix);
-        var d = diagonalSequenceService.findSequences(matrix);
-        var rd = reverseDiagonalService.findSequences(matrix);
-
-        System.out.println("WA");
-        System.out.println(v + h + d + rd);
-        System.out.println("WA");
-        return Either.right(v + h + d + rd >= 2);
+        return Either.right(
+                verticalSequenceService.findSequences(matrix)
+                                + horizontalSequenceService.findSequences(matrix)
+                                + diagonalSequenceService.findSequences(matrix)
+                                + reverseDiagonalService.findSequences(matrix)
+                        >= 2);
     }
 }

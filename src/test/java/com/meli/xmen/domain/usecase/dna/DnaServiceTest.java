@@ -17,7 +17,7 @@ class DnaServiceTest {
 
         final var response =
                 dnaService.loadDnaData(
-                        Dna.builder().withDna(Sample.createMutantCharacterList()).build());
+                        Dna.builder().withDnaList(Sample.createMutantCharacterList()).build());
         assertTrue(response.isRight());
         assertEquals(Sample.createMutantCharacterList().get(0).length(), response.get().length);
     }
@@ -27,7 +27,9 @@ class DnaServiceTest {
 
         final var response =
                 dnaService.loadDnaData(
-                        Dna.builder().withDna(Sample.createMutantWithErrorCharacterList()).build());
+                        Dna.builder()
+                                .withDnaList(Sample.createMutantWithErrorCharacterList())
+                                .build());
         assertTrue(response.isLeft());
         assertEquals(400, response.getLeft().getCode());
     }
