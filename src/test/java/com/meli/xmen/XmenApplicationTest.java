@@ -1,13 +1,12 @@
+/* (C)2023 */
 package com.meli.xmen;
 
 import org.junit.jupiter.api.Test;
 import org.springframework.boot.test.context.SpringBootTest;
 
 @SpringBootTest
-class XmenApplicationTests {
+public class XmenApplicationTest {
 
     @Test
-    void contextLoads() {
-    }
-
+    public void contextLoads() {}
 }
