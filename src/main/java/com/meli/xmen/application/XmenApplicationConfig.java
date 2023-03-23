@@ -7,11 +7,17 @@ import com.meli.xmen.domain.usecase.sequence.DiagonalSequenceService;
 import com.meli.xmen.domain.usecase.sequence.HorizontalSequenceService;
 import com.meli.xmen.domain.usecase.sequence.ReverseDiagonalService;
 import com.meli.xmen.domain.usecase.sequence.VerticalSequenceService;
+import com.meli.xmen.domain.usecase.stats.StatsService;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 
 @Configuration
 public class XmenApplicationConfig {
+
+    @Bean
+    public StatsService createStatsService() {
+        return new StatsService();
+    }
 
     @Bean
     public CellService createCellService() {

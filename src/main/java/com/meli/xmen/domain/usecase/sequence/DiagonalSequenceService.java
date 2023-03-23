@@ -2,7 +2,7 @@
 package com.meli.xmen.domain.usecase.sequence;
 
 import com.meli.xmen.domain.entity.Cell;
-import com.meli.xmen.domain.usecase.SequenceUtil;
+import com.meli.xmen.domain.usecase.sequence.util.SequenceUtil;
 
 public class DiagonalSequenceService implements SequenceService {
 

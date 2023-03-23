@@ -3,7 +3,7 @@ package com.meli.xmen.infrastructure.adapter.mutant;
 
 import static org.hamcrest.Matchers.containsStringIgnoringCase;
 import static org.mockito.ArgumentMatchers.anyList;
-import static org.mockito.Mockito.when;
+import static org.mockito.BDDMockito.given;
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.post;
 import static org.springframework.test.web.servlet.result.MockMvcResultHandlers.print;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.content;
@@ -11,7 +11,7 @@ import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.
 
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.meli.xmen.domain.usecase.Sample;
-import com.meli.xmen.infrastructure.handler.mutant.MutantDNAHandler;
+import com.meli.xmen.infrastructure.handler.mutant.MutantDnaHandler;
 import io.vavr.control.Either;
 import org.junit.jupiter.api.Test;
 import org.junit.runner.RunWith;
@@ -35,7 +35,7 @@ class MutantDnaControllerTest {
 
     @Autowired private ObjectMapper objectMapper;
 
-    @Mock private MutantDNAHandler handler;
+    @Mock private MutantDnaHandler handler;
 
     @Test
     void givenAListOfStrings_whenFindingIsMutant_thenShouldReturnTrue() throws Exception {
@@ -55,8 +55,8 @@ class MutantDnaControllerTest {
     void givenAListOfStrings_whenFindingIsMutant_thenShouldReturnTrue2() throws Exception {
 
         var dto = new DnaRequest(Sample.createMutantCharacterList());
-        when(handler.findIsMutant(new DnaRequest(anyList())))
-                .thenReturn(Either.right(Boolean.TRUE));
+        given(handler.findIsMutant(new DnaRequest(anyList())))
+                .willReturn(Either.right(Boolean.TRUE));
 
         this.mockMvc
                 .perform(

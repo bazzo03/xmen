@@ -20,12 +20,16 @@ import org.springframework.stereotype.Service;
 @Slf4j
 @AllArgsConstructor
 @Service
-public class MutantDNAHandler {
+public class MutantDnaHandler {
 
     private static final Integer MINIMUM_SEQUENCE = 1;
+
     @Autowired private MutantConverter mutantConverter;
+
     private CellService cellService;
+
     private DnaService dnaService;
+
     private VerticalSequenceService verticalSequenceService;
 
     private HorizontalSequenceService horizontalSequenceService;

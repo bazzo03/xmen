@@ -1,11 +1,11 @@
 /* (C)2023 */
-package com.meli.xmen.domain.usecase;
+package com.meli.xmen.domain.usecase.sequence.util;
 
 import com.meli.xmen.domain.entity.Cell;
 
 public class SequenceUtil {
 
-    private static Integer MAX_SAME_CHARACTERS = 4;
+    private static final Integer MAX_SAME_CHARACTERS = 4;
 
     private SequenceUtil() {}
 

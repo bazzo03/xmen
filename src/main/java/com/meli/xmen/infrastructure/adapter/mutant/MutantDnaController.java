@@ -3,7 +3,7 @@ package com.meli.xmen.infrastructure.adapter.mutant;
 
 import static org.springframework.http.HttpStatus.OK;
 
-import com.meli.xmen.infrastructure.handler.mutant.MutantDNAHandler;
+import com.meli.xmen.infrastructure.handler.mutant.MutantDnaHandler;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
@@ -15,7 +15,7 @@ import org.springframework.web.bind.annotation.*;
 @RequestMapping("/api/v1/mutants")
 public class MutantDnaController {
 
-    @Autowired private MutantDNAHandler handler;
+    @Autowired private MutantDnaHandler handler;
 
     @PostMapping
     public ResponseEntity<DnaResponse> findIsMutant(@RequestBody DnaRequest dto) {
@@ -27,8 +27,6 @@ public class MutantDnaController {
                                 new ResponseEntity<>(
                                         new DnaResponse(left.getMessage(), null),
                                         HttpStatus.valueOf(left.getCode())),
-                        right ->
-                                new ResponseEntity<>(
-                                        new DnaResponse(null, right), OK));
+                        right -> new ResponseEntity<>(new DnaResponse(null, right), OK));
     }
 }
