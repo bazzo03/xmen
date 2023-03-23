@@ -25,12 +25,10 @@ public class MutantDnaController {
                 .fold(
                         left ->
                                 new ResponseEntity<>(
-                                        DnaResponse.builder()
-                                                .withMessage(left.getMessage())
-                                                .build(),
+                                        new DnaResponse(left.getMessage(), null),
                                         HttpStatus.valueOf(left.getCode())),
                         right ->
                                 new ResponseEntity<>(
-                                        DnaResponse.builder().withIsMutant(right).build(), OK));
+                                        new DnaResponse(null, right), OK));
     }
 }

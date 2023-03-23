@@ -8,11 +8,11 @@ public class VerticalSequenceService implements SequenceService {
 
     @Override
     public Integer findSequences(Cell[][] matrix) {
-        int total = 0;
-        for (int column = 0; column < matrix.length; column++) {
-            Cell[] array = new Cell[matrix.length];
+        Integer total = 0;
+        for (var column = 0; column < matrix.length; column++) {
+            var array = new Cell[matrix.length];
             var cell = matrix[0][column];
-            int counter = 0;
+            var counter = 0;
             array[counter] = cell;
             while (this.hasNext(cell)) {
                 cell = this.getNext(matrix, cell.getRow(), cell.getColumn());
@@ -24,7 +24,7 @@ public class VerticalSequenceService implements SequenceService {
         return total;
     }
 
-    private Cell getNext(Cell[][] matrix, int row, int column) {
+    private Cell getNext(Cell[][] matrix, Integer row, Integer column) {
         return matrix[row + 1][column];
     }
 

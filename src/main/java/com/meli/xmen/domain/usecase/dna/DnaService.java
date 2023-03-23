@@ -41,12 +41,12 @@ public class DnaService {
                                                         }))
                         .toList();
 
-        var x = validations.stream().filter(Either::isLeft).toList();
-        if (x.isEmpty()) {
+        var validationsList = validations.stream().filter(Either::isLeft).toList();
+        if (validationsList.isEmpty()) {
             return Either.right(dnaResult);
         } else {
             return (Either<ErrorResponse, Character[][]>)
-                    x.stream().findFirst().orElse(returnGenericErrorResponse());
+                    validationsList.stream().findFirst().orElse(returnGenericErrorResponse());
         }
     }
 

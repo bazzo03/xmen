@@ -1,12 +1,13 @@
 /* (C)2023 */
 package com.meli.xmen.infrastructure.adapter.mutant;
 
+import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
 import lombok.ToString;
 
 @Data
-@Builder(setterPrefix = "with")
+@AllArgsConstructor
 @ToString
 public class DnaResponse {
 

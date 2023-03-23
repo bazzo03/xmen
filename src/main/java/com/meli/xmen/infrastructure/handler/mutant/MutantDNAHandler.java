@@ -22,6 +22,7 @@ import org.springframework.stereotype.Service;
 @Service
 public class MutantDNAHandler {
 
+    private static final Integer MINIMUM_SEQUENCE = 1;
     @Autowired private MutantConverter mutantConverter;
     private CellService cellService;
     private DnaService dnaService;
@@ -54,6 +55,6 @@ public class MutantDNAHandler {
                                 + horizontalSequenceService.findSequences(matrix)
                                 + diagonalSequenceService.findSequences(matrix)
                                 + reverseDiagonalService.findSequences(matrix)
-                        >= 2);
+                        > MINIMUM_SEQUENCE);
     }
 }
