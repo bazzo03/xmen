@@ -9,6 +9,6 @@ import org.springframework.stereotype.Service;
 public class MutantConverter {
 
     public Dna convertFromRequestToEntity(DnaRequest request) {
-        return Dna.builder().withDnaList(request.getDna()).build();
+        return new Dna(request.getDna());
     }
 }

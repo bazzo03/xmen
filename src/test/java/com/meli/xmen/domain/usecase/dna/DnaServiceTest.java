@@ -9,15 +9,14 @@ import com.meli.xmen.domain.usecase.Sample;
 import org.junit.jupiter.api.Test;
 
 class DnaServiceTest {
-
-    private DnaService dnaService = new DnaService();
+    private final DnaService dnaService = new DnaService();
 
     @Test
     void givenACorrectMatrix_whenLoadDnaDataIsCalled_thenShouldReturnTheMatrixAsCharacterArray() {
 
         final var response =
                 dnaService.loadDnaData(
-                        Dna.builder().withDnaList(Sample.createMutantCharacterList()).build());
+                        new Dna(Sample.createMutantCharacterList()));
         assertTrue(response.isRight());
         assertEquals(Sample.createMutantCharacterList().get(0).length(), response.get().length);
     }
@@ -27,9 +26,7 @@ class DnaServiceTest {
 
         final var response =
                 dnaService.loadDnaData(
-                        Dna.builder()
-                                .withDnaList(Sample.createMutantWithErrorCharacterList())
-                                .build());
+                        new Dna(Sample.createMutantWithErrorCharacterList()));
         assertTrue(response.isLeft());
         assertEquals(400, response.getLeft().getCode());
     }

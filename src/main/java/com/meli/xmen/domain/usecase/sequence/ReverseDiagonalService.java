@@ -8,10 +8,10 @@ public class ReverseDiagonalService implements SequenceService {
 
     @Override
     public Integer findSequences(Cell[][] matrix) {
-        int total = 0;
-        Cell[] array = new Cell[matrix.length];
+        var total = 0;
+        var array = new Cell[matrix.length];
         var cell = matrix[matrix.length - 1][0];
-        int counter = 0;
+        var counter = 0;
         array[counter] = cell;
         while (this.hasNext(cell)) {
             cell = this.getNext(matrix, cell.getRow(), cell.getColumn());
@@ -22,7 +22,7 @@ public class ReverseDiagonalService implements SequenceService {
         return total;
     }
 
-    private Cell getNext(Cell[][] matrix, int row, int column) {
+    private Cell getNext(Cell[][] matrix, Integer row, Integer column) {
         return matrix[row - 1][column + 1];
     }
 
