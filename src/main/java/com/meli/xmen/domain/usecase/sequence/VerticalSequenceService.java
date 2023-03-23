@@ -8,7 +8,7 @@ public class VerticalSequenceService implements SequenceService {
 
     @Override
     public Integer findSequences(Cell[][] matrix) {
-        Integer total = 0;
+        var total = 0;
         for (var column = 0; column < matrix.length; column++) {
             var array = new Cell[matrix.length];
             var cell = matrix[0][column];

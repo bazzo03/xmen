@@ -9,7 +9,6 @@ import com.meli.xmen.domain.usecase.Sample;
 import org.junit.jupiter.api.Test;
 
 class DnaServiceTest {
-
     private final DnaService dnaService = new DnaService();
 
     @Test

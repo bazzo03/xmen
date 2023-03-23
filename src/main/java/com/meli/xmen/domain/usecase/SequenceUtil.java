@@ -2,11 +2,11 @@
 package com.meli.xmen.domain.usecase;
 
 import com.meli.xmen.domain.entity.Cell;
-import org.springframework.beans.factory.annotation.Value;
 
 public class SequenceUtil {
 
     private static Integer MAX_SAME_CHARACTERS = 4;
+
     private SequenceUtil() {}
 
     public static Integer findMutantSequenceArray(Cell[] array) {
