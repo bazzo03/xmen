@@ -1,18 +1,23 @@
 /* (C)2023 */
 package com.meli.xmen.application;
 
-import com.meli.xmen.domain.usecase.cell.CellService;
-import com.meli.xmen.domain.usecase.dna.DnaService;
-import com.meli.xmen.domain.usecase.sequence.DiagonalSequenceService;
-import com.meli.xmen.domain.usecase.sequence.HorizontalSequenceService;
-import com.meli.xmen.domain.usecase.sequence.ReverseDiagonalService;
-import com.meli.xmen.domain.usecase.sequence.VerticalSequenceService;
+import com.meli.xmen.domain.usecase.dna.cell.CellService;
+import com.meli.xmen.domain.usecase.dna.sequence.DiagonalSequenceService;
+import com.meli.xmen.domain.usecase.dna.sequence.HorizontalSequenceService;
+import com.meli.xmen.domain.usecase.dna.sequence.ReverseDiagonalService;
+import com.meli.xmen.domain.usecase.dna.sequence.VerticalSequenceService;
 import com.meli.xmen.domain.usecase.stats.StatsService;
+import com.meli.xmen.infrastructure.out.mapper.dna.InfrastructureDnaConverter;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 
 @Configuration
 public class XmenApplicationConfig {
+
+    @Bean
+    public InfrastructureDnaConverter createInfrastructureDnaConverter() {
+        return new InfrastructureDnaConverter();
+    }
 
     @Bean
     public StatsService createStatsService() {
@@ -22,11 +27,6 @@ public class XmenApplicationConfig {
     @Bean
     public CellService createCellService() {
         return new CellService();
-    }
-
-    @Bean
-    public DnaService createDnaService() {
-        return new DnaService();
     }
 
     @Bean
