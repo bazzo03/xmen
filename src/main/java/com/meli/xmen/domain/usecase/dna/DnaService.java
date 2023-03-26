@@ -1,31 +1,51 @@
 /* (C)2023 */
 package com.meli.xmen.domain.usecase.dna;
 
-import com.meli.xmen.domain.entity.Dna;
+import com.meli.xmen.domain.entity.DnaEntity;
 import com.meli.xmen.domain.entity.ErrorResponse;
+import com.meli.xmen.infrastructure.out.mapper.dna.InfrastructureDnaConverter;
+import com.meli.xmen.infrastructure.out.repository.dna.DnaRepository;
 import io.vavr.control.Either;
 import java.util.concurrent.atomic.AtomicInteger;
 import java.util.regex.Pattern;
+import lombok.AllArgsConstructor;
+import lombok.NoArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.apache.commons.lang3.ArrayUtils;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
 
+@Service
 @Slf4j
+@AllArgsConstructor
+@NoArgsConstructor
 public class DnaService {
+
+    @Autowired private DnaRepository repository;
+
+    @Autowired private InfrastructureDnaConverter infrastructureDnaConverter;
 
     private static final Pattern DNA_PATTERN = Pattern.compile("[atcg]+", Pattern.CASE_INSENSITIVE);
     private static final String MATRIX_SIZE_NOT_CONSISTENT =
             "The size of the matrix to be built is not consistent";
 
-    public Either<ErrorResponse, Character[][]> loadDnaData(Dna dna) {
+    public DnaEntity saveDna(DnaEntity dnaEntity, Boolean isMutant) {
+        return infrastructureDnaConverter.convertFromRepositoryEntityToDomainEntity(
+                repository.saveDna(
+                        infrastructureDnaConverter.convertFromDomainEntityToRepositoryEntity(
+                                dnaEntity, isMutant)));
+    }
+
+    public Either<ErrorResponse, Character[][]> loadDnaData(DnaEntity dnaEntity) {
         log.info("Will transform DNA into a matrix of Characters");
-        var dnaResult = new Character[dna.getDnaList().size()][dna.getDnaList().size()];
+        var dnaResult = new Character[dnaEntity.getDnaList().size()][dnaEntity.getDnaList().size()];
 
         var counter = new AtomicInteger(0);
         var validations =
-                dna.getDnaList().stream()
+                dnaEntity.getDnaList().stream()
                         .map(
                                 row ->
-                                        validateRow(dna.getDnaList().size(), row)
+                                        validateRow(dnaEntity.getDnaList().size(), row)
                                                 .fold(
                                                         left -> {
                                                             counter.getAndIncrement();
@@ -51,8 +71,7 @@ public class DnaService {
     }
 
     private <T> Either<ErrorResponse, T> returnGenericErrorResponse() {
-        return Either.left(
-                new ErrorResponse(400, MATRIX_SIZE_NOT_CONSISTENT));
+        return Either.left(new ErrorResponse(400, MATRIX_SIZE_NOT_CONSISTENT));
     }
 
     private Either<ErrorResponse, Boolean> validateRow(Integer vectorLength, String row) {
