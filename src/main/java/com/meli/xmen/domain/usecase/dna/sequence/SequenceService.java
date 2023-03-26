@@ -5,5 +5,5 @@ import com.meli.xmen.domain.entity.CellEntity;
 
 public interface SequenceService {
 
-    Integer findSequences(CellEntity[][] matrix);
+    int findSequences(CellEntity[][] matrix);
 }

@@ -14,14 +14,14 @@ public class StatsService {
 
     @Autowired private InfrastructureStatsConverter infrastructureStatsConverter;
 
-    private static final Integer INCREMENT = 1;
+    private static final int INCREMENT = 1;
 
     public Either<ErrorResponse, StatsEntity> getStats() {
         return Either.right(infrastructureStatsConverter.convertFromRepositoryEntityToDomainEntity(repository.getCurrentStats()));
 
     }
 
-    public Either<ErrorResponse, StatsEntity> generateStats(Boolean isMutant) {
+    public Either<ErrorResponse, StatsEntity> generateStats(boolean isMutant) {
         StatsEntity currentStats = infrastructureStatsConverter.convertFromRepositoryEntityToDomainEntity(repository.getCurrentStats());
         return Either.right(infrastructureStatsConverter.convertFromRepositoryEntityToDomainEntity(
                 repository.saveStats(
@@ -29,20 +29,19 @@ public class StatsService {
         ));
     }
 
-    private StatsEntity calculateNewStats(StatsEntity currentStats, Boolean isMutant) {
+    private StatsEntity calculateNewStats(StatsEntity currentStats, boolean isMutant) {
         if (isMutant) {
             return new StatsEntity(
                     currentStats.getCountMutantDna() + INCREMENT,
                     currentStats.getCountHumanDna(),
-                    calculateRatio(Double.valueOf(currentStats.getCountMutantDna() + INCREMENT),
+                    calculateRatio((double) (currentStats.getCountMutantDna() + INCREMENT),
                             Double.valueOf(currentStats.getCountHumanDna())));
         } else {
-            final var ratio = Double.valueOf(currentStats.getCountMutantDna()) / Double.valueOf(currentStats.getCountHumanDna() + INCREMENT);
             return new StatsEntity(
                     currentStats.getCountMutantDna(),
                     currentStats.getCountHumanDna() + INCREMENT,
                     calculateRatio(Double.valueOf(currentStats.getCountMutantDna()),
-                            Double.valueOf(currentStats.getCountHumanDna() + INCREMENT)));
+                            (double) (currentStats.getCountHumanDna() + INCREMENT)));
         }
     }
 

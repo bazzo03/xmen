@@ -20,7 +20,7 @@ import org.springframework.web.context.WebApplicationContext;
 @RunWith(SpringRunner.class)
 @SpringBootTest
 @AutoConfigureMockMvc
-class StatsEntityControllerTest {
+class StatsControllerTest {
 
     @Autowired private MockMvc mockMvc;
 

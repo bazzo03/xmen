@@ -9,7 +9,7 @@ import lombok.extern.slf4j.Slf4j;
 @Slf4j
 public class CellService {
 
-    public Either<ErrorResponse, CellEntity[][]> createCells(Character[][] matrix) {
+    public Either<ErrorResponse, CellEntity[][]> createCells(char[][] matrix) {
 
         if (matrix == null) {
             log.warn("The size of the matrix to be built is not consistent");

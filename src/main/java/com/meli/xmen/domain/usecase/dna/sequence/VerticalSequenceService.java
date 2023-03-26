@@ -7,7 +7,7 @@ import com.meli.xmen.domain.usecase.dna.sequence.util.SequenceUtil;
 public class VerticalSequenceService implements SequenceService {
 
     @Override
-    public Integer findSequences(CellEntity[][] matrix) {
+    public int findSequences(CellEntity[][] matrix) {
         var total = 0;
         for (var column = 0; column < matrix.length; column++) {
             var array = new CellEntity[matrix.length];
@@ -24,7 +24,7 @@ public class VerticalSequenceService implements SequenceService {
         return total;
     }
 
-    private CellEntity getNext(CellEntity[][] matrix, Integer row, Integer column) {
+    private CellEntity getNext(CellEntity[][] matrix, int row, int column) {
         return matrix[row + 1][column];
     }
 

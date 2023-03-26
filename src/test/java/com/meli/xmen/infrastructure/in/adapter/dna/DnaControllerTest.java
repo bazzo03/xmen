@@ -11,7 +11,6 @@ import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.
 
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.meli.xmen.domain.usecase.Sample;
-import com.meli.xmen.infrastructure.in.adapter.dna.DnaRequest;
 import com.meli.xmen.infrastructure.in.handler.dna.DnaHandler;
 import io.vavr.control.Either;
 import org.junit.jupiter.api.Test;
@@ -28,7 +27,7 @@ import org.springframework.web.context.WebApplicationContext;
 @RunWith(SpringRunner.class)
 @SpringBootTest
 @AutoConfigureMockMvc
-class DnaControllerTestDataEntity {
+class DnaControllerTest {
 
     @Autowired private MockMvc mockMvc;
 

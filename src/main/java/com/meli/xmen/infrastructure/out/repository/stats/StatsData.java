@@ -12,7 +12,7 @@ import lombok.NoArgsConstructor;
 public class StatsData {
 
     public StatsData(
-            Integer countMutantDna, Integer countHumanDna, Double ratio, OffsetDateTime dateTime) {
+            int countMutantDna, int countHumanDna, Double ratio, OffsetDateTime dateTime) {
         this.countMutantDna = countMutantDna;
         this.countHumanDna = countHumanDna;
         this.ratio = ratio;
@@ -22,13 +22,13 @@ public class StatsData {
     @Column
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
-    private Integer id;
+    private int id;
 
-    @Column private Integer countMutantDna;
+    @Column private int countMutantDna;
 
-    @Column private Integer countHumanDna;
+    @Column private int countHumanDna;
 
-    @Column private Double ratio;
+    @Column private double ratio;
 
     @Column private OffsetDateTime dateTime;
 }
