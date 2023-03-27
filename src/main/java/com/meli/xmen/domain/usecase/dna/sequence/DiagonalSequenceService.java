@@ -3,11 +3,13 @@ package com.meli.xmen.domain.usecase.dna.sequence;
 
 import com.meli.xmen.domain.entity.CellEntity;
 import com.meli.xmen.domain.usecase.dna.sequence.util.SequenceUtil;
+import org.springframework.stereotype.Service;
 
+@Service
 public class DiagonalSequenceService implements SequenceService {
 
     @Override
-    public Integer findSequences(CellEntity[][] matrix) {
+    public int findSequences(CellEntity[][] matrix) {
         var total = 0;
         var array = new CellEntity[matrix.length];
         var cell = matrix[0][0];
@@ -22,7 +24,7 @@ public class DiagonalSequenceService implements SequenceService {
         return total;
     }
 
-    private CellEntity getNext(CellEntity[][] matrix, Integer row, Integer column) {
+    private CellEntity getNext(CellEntity[][] matrix, int row, int column) {
         return matrix[row + 1][column + 1];
     }
 

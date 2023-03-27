@@ -7,14 +7,14 @@ import lombok.ToString;
 @Data
 @ToString
 public class CellEntity {
-    private Character[][] dna;
-    private Integer row;
-    private Integer column;
-    private Character previousChar;
-    private Character currentChar;
-    private Integer size;
+    private char[][] dna;
+    private int row;
+    private int column;
+    private char previousChar;
+    private char currentChar;
+    private int size;
 
-    public CellEntity(Character[][] dna, Integer row, Integer column) {
+    public CellEntity(char[][] dna, int row, int column) {
         this.dna = dna;
         this.size = dna.length;
         this.row = row;

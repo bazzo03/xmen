@@ -3,13 +3,16 @@ package com.meli.xmen.infrastructure.out.repository.dna;
 
 import jakarta.persistence.*;
 import java.util.List;
+
+import lombok.AllArgsConstructor;
 import lombok.Getter;
 
 @Getter
 @Entity
+@AllArgsConstructor
 public class DnaData {
 
-    public DnaData(List<String> dnaList, Boolean result) {
+    public DnaData(List<String> dnaList, boolean result) {
         this.dnaList = dnaList;
         this.result = result;
     }
@@ -21,5 +24,5 @@ public class DnaData {
 
     @Column private List<String> dnaList;
 
-    @Column private Boolean result;
+    @Column private boolean result;
 }

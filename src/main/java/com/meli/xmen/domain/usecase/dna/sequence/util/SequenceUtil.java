@@ -9,14 +9,14 @@ public class SequenceUtil {
 
     private SequenceUtil() {}
 
-    public static Integer findMutantSequenceArray(CellEntity[] array) {
+    public static int findMutantSequenceArray(CellEntity[] array) {
 
         var totalSequences = 0;
         var sameCharactersCounter = 1;
 
         for (var i = 0; i < array.length - 1; i++) {
 
-            if (array[i].getCurrentChar().equals(array[i + 1].getCurrentChar())) {
+            if (array[i].getCurrentChar() == array[i + 1].getCurrentChar()) {
                 sameCharactersCounter++;
             } else {
                 sameCharactersCounter = 1;
