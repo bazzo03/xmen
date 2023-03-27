@@ -10,9 +10,9 @@ import lombok.ToString;
 @AllArgsConstructor
 public class StatsEntity {
 
-    private Integer countMutantDna;
+    private int countMutantDna;
 
-    private Integer countHumanDna;
+    private int countHumanDna;
 
-    private Double ratio;
+    private double ratio;
 }

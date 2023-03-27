@@ -6,14 +6,14 @@ import com.meli.xmen.domain.entity.ErrorResponse;
 import com.meli.xmen.infrastructure.out.mapper.dna.InfrastructureDnaConverter;
 import com.meli.xmen.infrastructure.out.repository.dna.DnaRepository;
 import io.vavr.control.Either;
-import java.util.concurrent.atomic.AtomicInteger;
-import java.util.regex.Pattern;
 import lombok.AllArgsConstructor;
 import lombok.NoArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
-import org.apache.commons.lang3.ArrayUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+
+import java.util.concurrent.atomic.AtomicInteger;
+import java.util.regex.Pattern;
 
 @Service
 @Slf4j
@@ -21,13 +21,13 @@ import org.springframework.stereotype.Service;
 @NoArgsConstructor
 public class DnaService {
 
-    @Autowired private DnaRepository repository;
-
-    @Autowired private InfrastructureDnaConverter infrastructureDnaConverter;
-
     private static final Pattern DNA_PATTERN = Pattern.compile("[atcg]+", Pattern.CASE_INSENSITIVE);
     private static final String MATRIX_SIZE_NOT_CONSISTENT =
             "The size of the matrix to be built is not consistent";
+    @Autowired
+    private DnaRepository repository;
+    @Autowired
+    private InfrastructureDnaConverter infrastructureDnaConverter;
 
     public DnaEntity saveDna(DnaEntity dnaEntity, Boolean isMutant) {
         return infrastructureDnaConverter.convertFromRepositoryEntityToDomainEntity(
@@ -36,9 +36,9 @@ public class DnaService {
                                 dnaEntity, isMutant)));
     }
 
-    public Either<ErrorResponse, Character[][]> loadDnaData(DnaEntity dnaEntity) {
+    public Either<ErrorResponse, char[][]> loadDnaData(DnaEntity dnaEntity) {
         log.info("Will transform DNA into a matrix of Characters");
-        var dnaResult = new Character[dnaEntity.getDnaList().size()][dnaEntity.getDnaList().size()];
+        var dnaResult = new char[dnaEntity.getDnaList().size()][dnaEntity.getDnaList().size()];
 
         var counter = new AtomicInteger(0);
         var validations =
@@ -53,9 +53,8 @@ public class DnaService {
                                                         },
                                                         right -> {
                                                             dnaResult[counter.get()] =
-                                                                    ArrayUtils.toObject(
-                                                                            row.toUpperCase()
-                                                                                    .toCharArray());
+                                                                    row.toUpperCase()
+                                                                            .toCharArray();
                                                             counter.getAndIncrement();
                                                             return Either.right(dnaResult);
                                                         }))
@@ -65,7 +64,7 @@ public class DnaService {
         if (validationsList.isEmpty()) {
             return Either.right(dnaResult);
         } else {
-            return (Either<ErrorResponse, Character[][]>)
+            return (Either<ErrorResponse, char[][]>)
                     validationsList.stream().findFirst().orElse(returnGenericErrorResponse());
         }
     }
@@ -74,7 +73,7 @@ public class DnaService {
         return Either.left(new ErrorResponse(400, MATRIX_SIZE_NOT_CONSISTENT));
     }
 
-    private Either<ErrorResponse, Boolean> validateRow(Integer vectorLength, String row) {
+    private Either<ErrorResponse, Boolean> validateRow(int vectorLength, String row) {
         if (row.length() != vectorLength) {
             log.warn(MATRIX_SIZE_NOT_CONSISTENT);
             return Either.left(new ErrorResponse(400, MATRIX_SIZE_NOT_CONSISTENT));
@@ -89,6 +88,6 @@ public class DnaService {
                                             + " are: A, T, C, G.",
                                     row)));
         }
-        return Either.right(Boolean.TRUE);
+        return Either.right(true);
     }
 }

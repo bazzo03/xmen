@@ -8,7 +8,7 @@ import lombok.Getter;
 @Getter
 public class ErrorResponse {
 
-    private Integer code;
+    private int code;
 
     private String message;
 }

@@ -7,7 +7,7 @@ import com.meli.xmen.domain.usecase.dna.DnaService;
 import com.meli.xmen.domain.usecase.dna.cell.CellService;
 import com.meli.xmen.domain.usecase.dna.sequence.DiagonalSequenceService;
 import com.meli.xmen.domain.usecase.dna.sequence.HorizontalSequenceService;
-import com.meli.xmen.domain.usecase.dna.sequence.ReverseDiagonalService;
+import com.meli.xmen.domain.usecase.dna.sequence.ReverseDiagonalSequenceService;
 import com.meli.xmen.domain.usecase.dna.sequence.VerticalSequenceService;
 import com.meli.xmen.domain.usecase.stats.StatsService;
 import com.meli.xmen.infrastructure.in.adapter.dna.DnaRequest;
@@ -27,19 +27,19 @@ public class DnaHandler {
 
     @Autowired private DomainDnaConverter domainDnaConverter;
 
-    private CellService cellService;
+    @Autowired private CellService cellService;
 
-    private DnaService dnaService;
+    @Autowired private DnaService dnaService;
 
-    private StatsService statsService;
+    @Autowired private StatsService statsService;
 
-    private VerticalSequenceService verticalSequenceService;
+    @Autowired private VerticalSequenceService verticalSequenceService;
 
-    private HorizontalSequenceService horizontalSequenceService;
+    @Autowired private HorizontalSequenceService horizontalSequenceService;
 
-    private DiagonalSequenceService diagonalSequenceService;
+    @Autowired private DiagonalSequenceService diagonalSequenceService;
 
-    private ReverseDiagonalService reverseDiagonalService;
+    @Autowired private ReverseDiagonalSequenceService reverseDiagonalSequenceService;
 
     public Either<ErrorResponse, Boolean> findIsMutant(DnaRequest dna) {
 
@@ -74,7 +74,7 @@ public class DnaHandler {
                 verticalSequenceService.findSequences(matrix)
                                 + horizontalSequenceService.findSequences(matrix)
                                 + diagonalSequenceService.findSequences(matrix)
-                                + reverseDiagonalService.findSequences(matrix)
+                                + reverseDiagonalSequenceService.findSequences(matrix)
                         > MINIMUM_SEQUENCE);
     }
 }

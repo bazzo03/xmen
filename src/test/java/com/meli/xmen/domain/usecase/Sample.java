@@ -1,6 +1,8 @@
 /* (C)2023 */
 package com.meli.xmen.domain.usecase;
 
+import com.meli.xmen.domain.entity.CellEntity;
+
 import java.util.List;
 
 public class Sample {
@@ -17,8 +19,18 @@ public class Sample {
         return List.of(new String[] {"ATGCGA", "CAG", "TTATGT", "AGA", "CCCCTA", "TCACTG"});
     }
 
-    public static Character[][] createMutantMatrix() {
-        Character[][] matrix = new Character[6][6];
+    public static CellEntity[][] convertFromCharsMatrixToCellEntityMatrix(char[][] matrix) {
+        var cellMatrix = new CellEntity[matrix.length][matrix.length];
+        for (var row = 0; row < matrix.length; row++) {
+            for (var column = 0; column < matrix.length; column++) {
+                cellMatrix[row][column] = new CellEntity(matrix, row, column);
+            }
+        }
+        return cellMatrix;
+    }
+
+    public static char[][] createMutantMatrix() {
+        char[][] matrix = new char[6][6];
         matrix[0][0] = 'A';
         matrix[0][1] = 'T';
         matrix[0][2] = 'G';
@@ -58,8 +70,8 @@ public class Sample {
         return matrix;
     }
 
-    public static Character[][] createMatrixWithErrors() {
-        Character[][] matrix = new Character[6][6];
+    public static char[][] createMatrixWithErrors() {
+        char[][] matrix = new char[6][6];
         matrix[0][0] = 'A';
         matrix[0][1] = 'T';
         matrix[0][2] = 'G';
@@ -99,8 +111,8 @@ public class Sample {
         return matrix;
     }
 
-    public static Character[][] createHumanMatrix() {
-        Character[][] matrix = new Character[6][6];
+    public static char[][] createHumanMatrix() {
+        char[][] matrix = new char[6][6];
         matrix[0][0] = 'A';
         matrix[0][1] = 'T';
         matrix[0][2] = 'G';

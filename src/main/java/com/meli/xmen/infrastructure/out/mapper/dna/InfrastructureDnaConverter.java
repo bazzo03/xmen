@@ -3,7 +3,9 @@ package com.meli.xmen.infrastructure.out.mapper.dna;
 
 import com.meli.xmen.domain.entity.DnaEntity;
 import com.meli.xmen.infrastructure.out.repository.dna.DnaData;
+import org.springframework.stereotype.Service;
 
+@Service
 public class InfrastructureDnaConverter {
 
     public DnaData convertFromDomainEntityToRepositoryEntity(
