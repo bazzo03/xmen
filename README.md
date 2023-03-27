@@ -14,7 +14,7 @@ This <b>project</b> provides and API in order to validate if a given blood belon
 
 
 ## Code coverage
-![img_4.png](img_4.png)
+![img_4.png](doc/img_4.png)
 
 ## Installation and Execution
 Feel free to download and run the application locally.
@@ -61,7 +61,7 @@ Possibly the previous conditions would mean having a different architecture in t
 Concepts of [Clean Architecture](https://blog.cleancoder.com/uncle-bob/2012/08/13/the-clean-architecture.html) were considered in this implementation, therefore the packaging naming conventions and packages definition.
 
 
-![img_3.png](img_3.png)
+![img_3.png](doc/img_3.png)
 
 Packages were divided into the following layers:
 ```
@@ -78,7 +78,7 @@ Contains the configuration of the ports and adapters of the application. Communi
 
 An overview of the communication of the different components is:
 
-![img_2.png](img_2.png)
+![img_2.png](doc/img_2.png)
 
 ## Usage
 There are 2 endpoints exposed:
@@ -123,11 +123,13 @@ Returns the following payload:
     }
 }
 ```
+For both endpoints there is the `message` field. This should be null unless an error code is returned (4xx or 5xx).
+
 
 ## Pending implementations
 The following bullets represent future work to be added:
 
-- [ ] Async implementation. A good practice is to added CompletableFutures or CompletionStage in endpoints to make everything async. (https://docs.oracle.com/javase/8/docs/api/java/util/concurrent/CompletionStage.html)
+- [ ] Async implementation. A good practice is to add CompletableFutures or CompletionStage in endpoints to make everything async. (https://docs.oracle.com/javase/8/docs/api/java/util/concurrent/CompletionStage.html)
 - [ ] Add a pipeline to deploy automatically in AWS with the help of GitHub actions.
 - [ ] Add a tracing tool (i.e Zipkin). (https://zipkin.io/pages/quickstart)
 - [ ] Add Vavr Either in all the communication with the database (https://www.baeldung.com/vavr-either)
@@ -135,7 +137,6 @@ The following bullets represent future work to be added:
 - [ ] Change of AWS architectural deployment.
 - [ ] Improve unit and integration testing (this means increasing coverage).
 - [ ] Addition of performance testing. A great tooling is JMeter or Gatling. (https://www.baeldung.com/gatling-jmeter-grinder-comparison)
-- [ ] Organize better readme docs (images) into a folder.
 
 
 ## Issue
