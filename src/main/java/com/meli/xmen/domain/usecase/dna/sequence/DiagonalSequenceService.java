@@ -3,7 +3,9 @@ package com.meli.xmen.domain.usecase.dna.sequence;
 
 import com.meli.xmen.domain.entity.CellEntity;
 import com.meli.xmen.domain.usecase.dna.sequence.util.SequenceUtil;
+import org.springframework.stereotype.Service;
 
+@Service
 public class DiagonalSequenceService implements SequenceService {
 
     @Override

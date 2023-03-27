@@ -1,6 +1,8 @@
 /* (C)2023 */
 package com.meli.xmen.domain.usecase;
 
+import com.meli.xmen.domain.entity.CellEntity;
+
 import java.util.List;
 
 public class Sample {
@@ -15,6 +17,16 @@ public class Sample {
 
     public static List<String> createMutantWithErrorCharacterList() {
         return List.of(new String[] {"ATGCGA", "CAG", "TTATGT", "AGA", "CCCCTA", "TCACTG"});
+    }
+
+    public static CellEntity[][] convertFromCharsMatrixToCellEntityMatrix(char[][] matrix) {
+        var cellMatrix = new CellEntity[matrix.length][matrix.length];
+        for (var row = 0; row < matrix.length; row++) {
+            for (var column = 0; column < matrix.length; column++) {
+                cellMatrix[row][column] = new CellEntity(matrix, row, column);
+            }
+        }
+        return cellMatrix;
     }
 
     public static char[][] createMutantMatrix() {

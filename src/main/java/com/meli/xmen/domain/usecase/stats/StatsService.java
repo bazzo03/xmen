@@ -7,7 +7,9 @@ import com.meli.xmen.infrastructure.out.mapper.stats.InfrastructureStatsConverte
 import com.meli.xmen.infrastructure.out.repository.stats.StatsRepository;
 import io.vavr.control.Either;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
 
+@Service
 public class StatsService {
 
     @Autowired private StatsRepository repository;

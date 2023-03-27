@@ -3,10 +3,13 @@ package com.meli.xmen.infrastructure.out.repository.dna;
 
 import jakarta.persistence.*;
 import java.util.List;
+
+import lombok.AllArgsConstructor;
 import lombok.Getter;
 
 @Getter
 @Entity
+@AllArgsConstructor
 public class DnaData {
 
     public DnaData(List<String> dnaList, boolean result) {

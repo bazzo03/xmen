@@ -6,10 +6,14 @@ import static org.junit.jupiter.api.Assertions.assertTrue;
 
 import com.meli.xmen.domain.usecase.Sample;
 import org.junit.jupiter.api.Test;
+import org.mockito.InjectMocks;
+import org.springframework.boot.test.context.SpringBootTest;
 
-class CellEntityServiceTest {
+@SpringBootTest
+class CellServiceTest {
 
-    CellService cellService = new CellService();
+    @InjectMocks
+    CellService cellService;
 
     @Test
     void givenCharacterMatrix_whenCreateCellsIsCalled_thenShouldCreateAllTheCellsSuccessful() {

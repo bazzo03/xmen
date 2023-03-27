@@ -8,7 +8,6 @@ import static org.mockito.BDDMockito.given;
 import com.meli.xmen.domain.entity.ErrorResponse;
 import com.meli.xmen.domain.entity.StatsEntity;
 import com.meli.xmen.domain.usecase.stats.StatsService;
-import com.meli.xmen.infrastructure.in.handler.stats.StatsHandler;
 import io.vavr.control.Either;
 import org.junit.jupiter.api.Test;
 import org.mockito.InjectMocks;
@@ -16,7 +15,7 @@ import org.mockito.Mock;
 import org.springframework.boot.test.context.SpringBootTest;
 
 @SpringBootTest
-class StatsEntityHandlerTest {
+class StatsHandlerTest {
 
     @InjectMocks private StatsHandler handler;
 
