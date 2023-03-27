@@ -27,6 +27,11 @@ The application is deployed on Elastic Beanstalk under the server url: http://xm
 
 ## Architecture
 
+Some concepts and implementation of this code were considering the [reactive manifesto](https://www.reactivemanifesto.org/):
+1. Elastic architecture.
+2. Error handling with Vavr.
+3. Functional programming (when possible).
+
 The application was built implementing concepts of [Domain Driven Design](https://martinfowler.com/bliki/DomainDrivenDesign.html)
 
 In this case it was considered the following Domains:
@@ -68,7 +73,7 @@ infrastructure
 Contains the configuration in order to launch the application.
 #### Domain Layer
 Contains the configuration of the domain: entities, services, behaviours, validations.
-#### Infrastructure
+#### Infrastructure Layer
 Contains the configuration of the ports and adapters of the application. Communication to database and exposure of endpoints.
 
 An overview of the communication of the different components is:
@@ -119,7 +124,18 @@ Returns the following payload:
 }
 ```
 
+## Pending implementations
+The following bullets represent future work to be added:
 
+-[ ] Async implementation. A good practice is to added CompletableFutures or CompletionStage in endpoints to make everything async. (https://docs.oracle.com/javase/8/docs/api/java/util/concurrent/CompletionStage.html)
+-[ ] Add a pipeline to deploy automatically in AWS with the help of GitHub actions.
+-[ ] Add a tracing tool (i.e Zipkin). (https://zipkin.io/pages/quickstart)
+-[ ] Add Vavr Either in all the communication with the database (https://www.baeldung.com/vavr-either)
+-[ ] Add logs in more detail in different places, masking sensitive data.
+-[ ] Change of AWS architectural deployment.
+-[ ] Improve unit and integration testing (this means increasing coverage).
+-[ ] Addition of performance testing. A great tooling is JMeter or Gatling. (https://www.baeldung.com/gatling-jmeter-grinder-comparison)
+-[ ] Organize better readme docs (images) into a folder.
 
 
 ## Issue
