@@ -32,7 +32,6 @@ class StatsServiceTest {
     @Test
     void givenThereAreNoStats_whenStatsRequired_thenShouldRespondCorrectly() {
 
-
         given(repository.getCurrentStats()).willReturn(new StatsData(0,0,0.0, OffsetDateTime.now()));
         given(infrastructureStatsConverter.convertFromRepositoryEntityToDomainEntity(any())).willReturn(new StatsEntity(0,0,0.0));
 
@@ -46,7 +45,6 @@ class StatsServiceTest {
     @Test
     void givenThereAreStats_whenStatsRequired_thenShouldRespondCorrectly() {
 
-
         given(repository.getCurrentStats()).willReturn(new StatsData(1,0,1.0, OffsetDateTime.now()));
         given(infrastructureStatsConverter.convertFromRepositoryEntityToDomainEntity(any())).willReturn(new StatsEntity(1,0,1.0));
 
@@ -56,6 +54,33 @@ class StatsServiceTest {
         assertEquals(1, response.get().getCountMutantDna());
         assertEquals(0, response.get().getCountHumanDna());
         assertEquals(1.0, response.get().getRatio());
+    }
+
+    @Test
+    void givenThereAreStats_whenGeneratingStatsAndIsNotMutant_thenShouldCreateStatsSuccessful() {
+
+        given(repository.getCurrentStats()).willReturn(new StatsData(5,5,0.5, OffsetDateTime.now()));
+        given(infrastructureStatsConverter.convertFromRepositoryEntityToDomainEntity(any())).willReturn(new StatsEntity(5,5,0.5));
+
+        final var response = statsService.generateStats(false);
+
+        assertTrue(response.isRight());
+        assertEquals(5, response.get().getCountMutantDna());
+        assertEquals(5, response.get().getCountHumanDna());
+        assertEquals(0.5, response.get().getRatio());
+    }
+    @Test
+    void givenThereAreStats_whenGeneratingStatsAndIsHumanAndThereAreNoMutants_thenShouldCreateStatsSuccessful() {
+
+        given(repository.getCurrentStats()).willReturn(new StatsData(0,5,0.0, OffsetDateTime.now()));
+        given(infrastructureStatsConverter.convertFromRepositoryEntityToDomainEntity(any())).willReturn(new StatsEntity(0,5,0.0));
+
+        final var response = statsService.generateStats(false);
+
+        assertTrue(response.isRight());
+        assertEquals(0, response.get().getCountMutantDna());
+        assertEquals(5, response.get().getCountHumanDna());
+        assertEquals(0.0, response.get().getRatio());
     }
 
 
