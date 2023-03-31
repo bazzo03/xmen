@@ -200,6 +200,9 @@
                         <exclude>**/*/XmenApplicationConfig.*</exclude>
                         <exclude>**/*/dna/DnaResponse.*</exclude>
                         <exclude>**/*/dna/DnaRequest.*</exclude>
+                        <exclude>**/*/stats/StatsResponse.*</exclude>
+                        <exclude>**/*/stats/StatsValueResponse.*</exclude>
+                        <exclude>**/*/stats/StatsRequest.*</exclude>
                         <exclude>**/*/XmenApplication.*</exclude>
                     </excludes>
                 </configuration>
