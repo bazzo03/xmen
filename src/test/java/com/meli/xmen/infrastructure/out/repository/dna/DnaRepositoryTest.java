@@ -2,7 +2,8 @@
 package com.meli.xmen.infrastructure.out.repository.dna;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
-import static org.mockito.Mockito.when;
+
+import static org.mockito.BDDMockito.given;
 
 import java.util.List;
 import org.junit.jupiter.api.Test;
@@ -22,10 +23,12 @@ class DnaRepositoryTest {
 
         final var dnaData = new DnaData(List.of("ACGT, TGCA"), true);
 
-        when(port.save(dnaData)).thenReturn(dnaData);
+        given(port.save(dnaData)).willReturn(dnaData);
 
         final var result = dnaRepository.saveDna(dnaData);
 
         assertEquals(dnaData.getDnaList().size(), result.getDnaList().size());
+        assertEquals(dnaData.getId(), result.getId());
+        assertEquals(dnaData.isResult(), result.isResult());
     }
 }

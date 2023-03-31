@@ -197,13 +197,10 @@
                 <configuration>
                     <excludes>
                         <exclude>**/domain/entity/**</exclude>
-                        <exclude>**/infrastructure/mapper/mutant/*</exclude>
-                        <exclude>**/application/XmenApplicationConfig.java</exclude>
-                        <exclude>**/infrastructure/adapter/stats/StatsValueResponse.java</exclude>
-                        <exclude>**/infrastructure/adapter/stats/StatsResponse.java</exclude>
-                        <exclude>**/infrastructure/adapter/mutant/DnaResponse.java</exclude>
-                        <exclude>**/infrastructure/adapter/mutant/DnaRequest.java</exclude>
-                        <exclude>**/XmenApplication*</exclude>
+                        <exclude>**/*/XmenApplicationConfig.*</exclude>
+                        <exclude>**/*/dna/DnaResponse.*</exclude>
+                        <exclude>**/*/dna/DnaRequest.*</exclude>
+                        <exclude>**/*/XmenApplication.*</exclude>
                     </excludes>
                 </configuration>
                 <executions>

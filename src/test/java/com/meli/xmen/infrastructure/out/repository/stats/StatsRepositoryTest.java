@@ -27,6 +27,7 @@ class StatsRepositoryTest {
 
         assertEquals(stats.getRatio(), result.getRatio());
         assertEquals(stats.getCountMutantDna(), result.getCountMutantDna());
-        assertEquals(stats.getCountMutantDna(), result.getCountMutantDna());
+        assertEquals(stats.getId(), result.getId());
+        assertEquals(stats.getDateTime(), result.getDateTime());
     }
 }
