@@ -2,21 +2,29 @@
 package com.meli.xmen.domain.usecase;
 
 import com.meli.xmen.domain.entity.CellEntity;
-
 import java.util.List;
 
 public class Sample {
 
+    public static List<String> createGiantCharacterList() {
+        return List.of(
+                "ATGCGA", "CAGTGC", "TTATGT", "AGAAGG", "CCCCTA", "TCACTG", "ATACGA", "CAGTGC",
+                "TTATGT", "ATAAGG", "CTCCTA", "TCCCTG", "ATGGGA", "CAGTGC", "TTATGT", "AGTATG",
+                "CCCATA", "TCTCTG", "ATGTGA", "CAGTGC", "TTATGT", "AGAATG", "ACCCTA", "TCATTG",
+                "ATGCTA", "CAGTGC", "TTATGT", "ATAAGG", "CCACTA", "TCAGTG", "ATGCAA", "CAGTGC",
+                "TTATGT", "ATAAGG", "CCACTA", "TGACTG");
+    }
+
     public static List<String> createMutantCharacterList() {
-        return List.of(new String[] {"ATGCGA", "CAGTGC", "TTATGT", "AGAAGG", "CCCCTA", "TCACTG"});
+        return List.of("ATGCGA", "CAGTGC", "TTATGT", "AGAAGG", "CCCCTA", "TCACTG");
     }
 
     public static List<String> createWrongMutantCharacterList() {
-        return List.of(new String[] {"ATGXGA", "XAGTGC", "TXATGT", "AXAAGG", "CXCCTA", "TCACTX"});
+        return List.of("ATGXGA", "XAGTGC", "TXATGT", "AXAAGG", "CXCCTA", "TCACTX");
     }
 
     public static List<String> createMutantWithErrorCharacterList() {
-        return List.of(new String[] {"ATGCGA", "CAG", "TTATGT", "AGA", "CCCCTA", "TCACTG"});
+        return List.of("ATGCGA", "CAG", "TTATGT", "AGA", "CCCCTA", "TCACTG");
     }
 
     public static CellEntity[][] convertFromCharsMatrixToCellEntityMatrix(char[][] matrix) {

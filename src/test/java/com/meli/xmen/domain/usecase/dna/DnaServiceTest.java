@@ -8,8 +8,8 @@ import com.meli.xmen.domain.entity.DnaEntity;
 import com.meli.xmen.domain.usecase.Sample;
 import com.meli.xmen.infrastructure.out.mapper.dna.InfrastructureDnaConverter;
 import com.meli.xmen.infrastructure.out.repository.dna.DnaData;
-import com.meli.xmen.infrastructure.out.repository.dna.DnaH2Port;
 import com.meli.xmen.infrastructure.out.repository.dna.DnaRepository;
+import java.util.List;
 import org.junit.jupiter.api.Test;
 import org.mockito.InjectMocks;
 import org.mockito.Mock;
@@ -17,10 +17,26 @@ import org.springframework.boot.test.context.SpringBootTest;
 
 @SpringBootTest
 class DnaServiceTest {
-    @Mock DnaH2Port h2Repository;
     @InjectMocks private DnaService dnaService;
     @Mock private DnaRepository repository;
     @Mock private InfrastructureDnaConverter infrastructureDnaConverter;
+
+    @Test
+    void givenAnEmptyMatrix_whenLoadDnaDataIsCalled_thenShouldReturnTheCorrespondingError() {
+
+        final var response = dnaService.loadDnaData(new DnaEntity(List.of()));
+        assertTrue(response.isLeft());
+        assertEquals(400, response.getLeft().getCode());
+    }
+
+    @Test
+    void givenBigMatrix_whenLoadDnaDataIsCalled_thenShouldReturnTheCorrespondingError() {
+
+        final var response =
+                dnaService.loadDnaData(new DnaEntity(Sample.createGiantCharacterList()));
+        assertTrue(response.isLeft());
+        assertEquals(400, response.getLeft().getCode());
+    }
 
     @Test
     void givenACorrectMatrix_whenLoadDnaDataIsCalled_thenShouldReturnTheMatrixAsCharacterArray() {

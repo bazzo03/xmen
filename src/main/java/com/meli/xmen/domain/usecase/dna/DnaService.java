@@ -4,7 +4,6 @@ package com.meli.xmen.domain.usecase.dna;
 import com.meli.xmen.domain.entity.DnaEntity;
 import com.meli.xmen.domain.entity.ErrorResponse;
 import com.meli.xmen.infrastructure.out.mapper.dna.InfrastructureDnaConverter;
-import com.meli.xmen.infrastructure.out.repository.dna.DnaData;
 import com.meli.xmen.infrastructure.out.repository.dna.DnaRepository;
 import io.vavr.control.Either;
 import java.util.concurrent.atomic.AtomicInteger;
@@ -31,13 +30,11 @@ public class DnaService {
     @Autowired private InfrastructureDnaConverter infrastructureDnaConverter;
 
     public DnaEntity saveDna(DnaEntity dnaEntity, Boolean isMutant) {
-        DnaData toSave =
+        final var toSave =
                 infrastructureDnaConverter.convertFromDomainEntityToRepositoryEntity(
                         dnaEntity, isMutant);
-        DnaData savedData = repository.saveDna(toSave);
-        DnaEntity finalResult =
-                infrastructureDnaConverter.convertFromRepositoryEntityToDomainEntity(savedData);
-        return finalResult;
+        final var savedData = repository.saveDna(toSave);
+        return infrastructureDnaConverter.convertFromRepositoryEntityToDomainEntity(savedData);
     }
 
     public Either<ErrorResponse, char[][]> loadDnaData(DnaEntity dnaEntity) {
